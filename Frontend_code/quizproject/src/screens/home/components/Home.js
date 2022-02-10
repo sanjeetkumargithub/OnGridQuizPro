@@ -3,7 +3,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { CardActionArea, CardActions, Grid } from "@mui/material";
-import { RadioButton, CustomButton } from "../../../shared";
+import {  CustomButton } from "../../../shared";
 const HomeComponent = () => {
   const btnstyle = { margin: "8px 0" };
   
@@ -32,10 +32,11 @@ const HomeComponent = () => {
                 </Typography>
               </Grid>
 
+
               <Grid item xs={4}>
                 <Grid container>
                   <Grid item xs={4}>
-                    {" "}
+                    {"  "}
                   </Grid>
                   <Grid>
                     {" "}
