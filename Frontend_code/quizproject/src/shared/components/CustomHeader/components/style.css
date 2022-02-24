@@ -1,0 +1,15 @@
+#header{
+    background:blue;
+   
+}
+#headercolor{
+    color: white;
+}
+#menu{
+   
+    margin-top: 28px;
+   
+}
+.headerposition{
+    position: fixed;
+}
