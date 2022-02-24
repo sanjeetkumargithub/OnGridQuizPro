@@ -65,42 +65,36 @@ export default function CustomHeader({
                   {" "}
                   {token && (
                     <Grid>
-                      <MenuItem onClick={() => handleClose(2)}>
-                        Profile
-                      </MenuItem>
+                      <Grid>
+                        <MenuItem onClick={() => handleClose(2)}>
+                          Profile
+                        </MenuItem>
+                      </Grid>
+                      <Grid>
+                        <MenuItem onClick={() => handleClose(3)}>
+                          Logout
+                        </MenuItem>
+                      </Grid>
                     </Grid>
                   )}
                 </Grid>
-                <Grid>
-                  {" "}
-                  {token && (
-                    <Grid>
-                      <MenuItem onClick={() => handleClose(3)}>Logout</MenuItem>
-                    </Grid>
-                  )}
-                </Grid>
-
                 <Grid>
                   {" "}
                   {token == null && (
                     <Grid>
-                      <MenuItem onClick={() => handleClose(4)}>Login</MenuItem>
+                      <Grid>
+                        <MenuItem onClick={() => handleClose(4)}>
+                          Login
+                        </MenuItem>
+                      </Grid>
+                      <Grid>
+                        <MenuItem onClick={() => handleClose(5)}>
+                          Sign Up
+                        </MenuItem>
+                      </Grid>
                     </Grid>
                   )}
                 </Grid>
-
-                <Grid>
-                  {" "}
-                  {token == null && (
-                    <Grid>
-                      <MenuItem onClick={() => handleClose(5)}>
-                        Sign Up
-                      </MenuItem>
-                    </Grid>
-                  )}
-                </Grid>
-
-                <Grid> </Grid>
               </Menu>
             </Grid>
           </Toolbar>

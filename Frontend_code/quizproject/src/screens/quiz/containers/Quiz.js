@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { QuizPageComponent } from "../components";
 import base_url from "../../../utils/api";
 import axios from "axios";
+const token = localStorage.getItem("SessionToken");
 class QuizContainer extends Component {
   state = {
     list: [],
@@ -10,7 +11,7 @@ class QuizContainer extends Component {
     open: false,
   };
   componentDidMount = () => {
-    const token = localStorage.getItem("SessionToken");
+    
     const options = {
       headers: { Authorization: `${token}` },
     };
@@ -39,7 +40,7 @@ class QuizContainer extends Component {
       };
     });
     let submitQuestions = { submitQuestions: ans };
-    const token = localStorage.getItem("SessionToken");
+
     const options = {
       headers: { Authorization: `${token}` },
     };
@@ -56,9 +57,11 @@ class QuizContainer extends Component {
     this.handleOpen();
     this.setState({ answers: answers });
   };
+
   handleOpen = () => {
     this.setState({ open: true });
   };
+  
   render() {
     return (
       <QuizPageComponent

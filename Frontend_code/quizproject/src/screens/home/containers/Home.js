@@ -5,7 +5,6 @@ import axios from "axios";
 class HomeContainer extends Component {
   state = {
     posts: [],
-    
   };
 
   componentDidMount() {

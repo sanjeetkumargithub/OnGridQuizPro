@@ -2,7 +2,7 @@ import React from "react";
 import { CustomHeader, CustomFooter } from "../../shared";
 import { Route,Switch } from "react-router-dom";
 import { privateRoutes } from "../../navigation/routes";
-const PrivateLayout = ({}) => {
+const PrivateLayout = () => {
   return (
     <>
       <div>

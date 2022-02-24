@@ -6,7 +6,15 @@ import { CustomCard } from "../../../shared";
 const HomeComponent = ({ data, handleClick }) => {
   return (
     <>
-      <Grid container item xs={12} marginTop={5} paddingTop={5} marginBottom={5}paddingBottom={5} >
+      <Grid
+        container
+        item
+        xs={12}
+        marginTop={5}
+        paddingTop={5}
+        marginBottom={5}
+        paddingBottom={5}
+      >
         {data.length > 0 ? (
           data.map((item) => (
             <CustomCard

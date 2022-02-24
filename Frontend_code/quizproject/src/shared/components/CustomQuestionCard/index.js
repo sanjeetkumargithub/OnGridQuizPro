@@ -11,7 +11,7 @@ const QuestionCard = ({ title,  data, onChangeValue, answers }) => {
       <Card sx={{ maxWidth: 450 }} style={{ backgroundColor: "#F7ECDE" }}>
         <CardActionArea>
           <CardContent>
-            <Typography variant="body2" color="text.secondary">
+            <Typography >
             {title}
             </Typography>
           </CardContent>

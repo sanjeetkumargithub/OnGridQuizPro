@@ -1,8 +1,9 @@
+import Quiz from "../screens/quiz";
 import Home from "../screens/home";
 import Login from "../screens/login";
 import SignUp from "../screens/signup";
 import Profile from "../screens/profile";
-import Quiz from "../screens/quiz";
+
 export const privateRoutes = [
   {
     path: "/profile",
