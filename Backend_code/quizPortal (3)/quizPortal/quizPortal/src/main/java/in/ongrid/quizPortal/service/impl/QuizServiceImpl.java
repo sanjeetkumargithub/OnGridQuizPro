@@ -8,6 +8,9 @@ import in.ongrid.quizPortal.model.dto.CreateQuizRequest;
 import in.ongrid.quizPortal.service.QuizService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -36,9 +39,11 @@ public class QuizServiceImpl implements QuizService {
     }
 
     @Override
-    public List<Quiz> getQuiz() {
-        return quizDao.findAll();
-
+    public Page<Quiz> getQuiz(Integer page) {
+        Pageable pageable=PageRequest.of(page,5);
+        
+        return quizDao.findAll(pageable);
+        
     }
 
 

@@ -11,6 +11,7 @@ import in.ongrid.quizPortal.service.QuestionService;
 import in.ongrid.quizPortal.service.QuizService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.AccessDeniedException;
 import org.springframework.web.bind.annotation.*;
@@ -35,9 +36,10 @@ public class QuizController {
     }
 
 
-    @GetMapping(path = "/")
-    public List<Quiz> getQuiz(){
-        return quizService.getQuiz();
+    @GetMapping(path = "/{page}")
+    public Page<Quiz> getQuiz(@PathVariable("page") Integer page)
+    {
+        return quizService.getQuiz(page);
     }
 
 
