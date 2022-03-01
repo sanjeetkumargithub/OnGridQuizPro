@@ -1,15 +1,15 @@
 const gender = [
   {
     label: "Male",
-    value: "0",
+    value: "M",
   },
   {
     label: "Female",
-    value: "1",
+    value: "F",
   },
   {
     label: "Others",
-    value: "2",
+    value: "O",
   },
 ];
 

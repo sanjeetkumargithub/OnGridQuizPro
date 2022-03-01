@@ -5,8 +5,7 @@ import CustomFooter from "./components/CustomFooter";
 import CustomLink from "./components/CustomLink";
 import CustomDate from "./components/CustomDate";
 import CustomRadioButton from "./components/CustomRadioButton";
-import CustomCard from "./components/CustomCard";
-import CustomQuestionCard from "./components/CustomQuestionCard";
+import CustomErrorPopup from "./components/CustomErrorPopup";
 export {
   CustomHeader,
   CustomButton,
@@ -15,6 +14,5 @@ export {
   CustomLink,
   CustomDate,
   CustomRadioButton,
-  CustomCard,
-  CustomQuestionCard,
+  CustomErrorPopup
 };

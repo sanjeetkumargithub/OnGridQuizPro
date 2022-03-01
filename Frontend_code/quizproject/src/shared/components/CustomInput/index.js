@@ -1,13 +1,6 @@
 import TextField from "@material-ui/core/TextField";
-const NewField = ({
-  type,
-  label,
-  placeholder,
-  handleChange,
-  value,
-  helperText,
-  error,
-}) => {
+const CustomField = ({ type, label, placeholder, handleChange, value, helperText, error }) => {
+
   return (
     <TextField
       label={label}
@@ -22,4 +15,4 @@ const NewField = ({
     />
   );
 };
-export default NewField;
+export default CustomField;

@@ -21,7 +21,7 @@ export default function CustomHeader({
       <Box sx={{ flexGrow: 1 }}>
         <AppBar id="header">
           <Toolbar>
-            <Grid xs={1}>
+            <Grid xs={2}>
               <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                 <Grid id="headercolor"> Quiz Portal</Grid>
               </Typography>
@@ -36,11 +36,11 @@ export default function CustomHeader({
                 onClick={handleMenu}
                 color="inherit"
               >
-                <Grid style={{ color: "white" }}>
+                <Grid style={{ color: "white" }} >
                   {" "}
                   <AccountCircle />
                 </Grid>
-              </IconButton>
+              </IconButton >
               <Menu
                 anchorEl={anchorEl}
                 anchorOrigin={{

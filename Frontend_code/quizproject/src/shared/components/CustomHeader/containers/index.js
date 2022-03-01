@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import HeaderComponent from "../components";
 import axios from "axios";
 import base_url from "../../../../utils/api";
-import history from "../../../../utils/history";
+import { withRouter } from "react-router-dom";
+
 const token = localStorage.getItem("SessionToken");
 class HeaderContainer extends Component {
   constructor(props) {
@@ -16,13 +17,14 @@ class HeaderContainer extends Component {
     this.setState({ anchorEl: event.currentTarget });
   };
   handleClose = (id) => {
-    if (id == 1) history.push("/");
+    if (id == 1) this.props.history.push("/");
     if (id == 2) {
-      if (token) history.push("/profile");
-      else history.push("/login");
+
+      if (token) { this.props.history.push("/profile"); }
+      else this.props.history.push("/login");
     }
     if (id == 4) window.location.href = "/login";
-    if (id == 5) history.push("/signup");
+    if (id == 5) window.location.href = "/signup";
     if (id == 3) {
       const options = {
         headers: { Authorization: `${token}` },
@@ -31,12 +33,12 @@ class HeaderContainer extends Component {
         .post(`${base_url}/user/logout`, `${token}`, options)
         .then((response) => {
           localStorage.removeItem("SessionToken");
-          history.push("/");
+          this.props.history.push("/");
         })
         .catch((error) => {
           console.log(error);
           localStorage.removeItem("SessionToken");
-          history.push("/");
+          this.props.history.push("/");
         });
     }
     this.setState({ anchorEl: null });
@@ -52,4 +54,4 @@ class HeaderContainer extends Component {
     );
   }
 }
-export default HeaderContainer;
+export default withRouter(HeaderContainer);

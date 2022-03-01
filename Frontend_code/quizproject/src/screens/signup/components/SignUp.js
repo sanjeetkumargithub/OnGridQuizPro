@@ -8,11 +8,13 @@ import {
   CustomButton,
   CustomRadioButton,
   CustomDate,
+  CustomErrorPopup
 } from "../../../shared";
 import { FormControl } from "@mui/material";
 import { gender } from "../../../shared/constants";
 
-const SignUpComponent = ({ data, handleChange, handleForm, error }) => {
+const SignUpComponent = ({ data, handleChange, handleForm, error,errorPopup,errorMessage,errorHandleChange }) => {
+
   const paperStyle = {
     padding: "25px 55px  10px 55px ",
     width: 400,
@@ -23,6 +25,7 @@ const SignUpComponent = ({ data, handleChange, handleForm, error }) => {
   };
   const headerStyle = { margin: 0 };
   const avatarStyle = { backgroundColor: "blue" };
+
   return (
     <Grid container id="paper" >
       <Paper elevation={20} style={paperStyle}>
@@ -35,55 +38,55 @@ const SignUpComponent = ({ data, handleChange, handleForm, error }) => {
         </Grid>
         <FormControl>
           <Grid constainer>
-            <Grid>
+            <Grid className="signup">
               <CustomInput
                 type="text"
                 placeholder="Please enter name"
-                label="Name"
+
                 value={data.name}
                 handleChange={(value) => handleChange(value, "name")}
                 error={error.name}
                 helperText={error.name}
               />
             </Grid>
-            <Grid>
+            <Grid className="signup">
               <CustomInput
                 type="text"
-                placeholder="Please enter email id"
-                label="Email id"
+                placeholder="Enter email id"
+
                 value={data.email}
                 handleChange={(value) => handleChange(value, "email")}
                 error={error.email}
                 helperText={error.email}
               />
             </Grid>
-            <Grid>
+            <Grid className="signup">
               <CustomInput
                 type="number"
-                placeholder="Please enter mobile number"
-                label="Mobile number"
+                placeholder="Enter mobile number"
+
                 value={data.mobile}
                 handleChange={(value) => handleChange(value, "mobile")}
                 error={error.mobile}
                 helperText={error.mobile}
               />
             </Grid>
-            <Grid>
+            <Grid className="signup" >
               <CustomInput
                 type="password"
-                placeholder="Please enter passowrd"
-                label="Password"
+                placeholder="Enter passowrd"
+
                 value={data.password}
                 handleChange={(value) => handleChange(value, "password")}
                 error={error.password}
                 helperText={error.password}
               />
             </Grid>
-            <Grid container item paddingTop={20} marginTop={50}>
+            <Grid className="signup">
               <CustomInput
                 type="password"
-                placeholder="Please enter confirm password "
-                label="Confirm password"
+                placeholder="Enter confirm password "
+
                 value={data.confirmpassword}
                 handleChange={(value) => handleChange(value, "confirmpassword")}
                 error={error.confirmpassword}
@@ -100,8 +103,10 @@ const SignUpComponent = ({ data, handleChange, handleForm, error }) => {
             </Grid>
             <Grid className="signup">
               <CustomDate
-                value={data.DateOfBirth}
+                value={data.dateOfBirth}
                 handleChange={(value) => handleChange(value, "dateOfBirth")}
+                error={error.dateOfBirth}
+                helperText={error.dateOfBirth}
               />
             </Grid>
 
@@ -120,6 +125,7 @@ const SignUpComponent = ({ data, handleChange, handleForm, error }) => {
           </Grid>
         </FormControl>
       </Paper>
+      <CustomErrorPopup open={errorPopup} errorMessage={errorMessage} errorHandleChange={errorHandleChange} />
     </Grid>
   );
 };

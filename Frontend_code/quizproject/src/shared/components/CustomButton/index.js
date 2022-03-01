@@ -1,12 +1,14 @@
 import { Button } from "@mui/material";
+
 const btnstyle = { margin: "8px 0" };
-const NewButton = ({ name, id, handleClick }) => {
+const CustomButton = (props) => {
+  const { name, id, handleClick } = props;
   return (
     <Button
-      type="submit"
+
       variant="contained"
       color="primary"
-      className="sanjeet"
+
       style={btnstyle}
       bgcolor="blue"
       fullWidth
@@ -17,4 +19,4 @@ const NewButton = ({ name, id, handleClick }) => {
     </Button>
   );
 };
-export default NewButton;
+export default CustomButton;

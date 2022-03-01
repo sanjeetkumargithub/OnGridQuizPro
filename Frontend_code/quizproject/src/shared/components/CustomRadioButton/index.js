@@ -1,26 +1,30 @@
 import React from "react";
-
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
-const NewRadioComponent = ({ handleChange, value, options, label }) => {
+
+const RadioComponent = ({ handleChange, value, options, label, labelClassName, formClassName }) => {
+
   const marginTop = { marginTop: 5 };
   return (
-    <FormControl component="fieldset" style={marginTop} >
+    <FormControl component="fieldset" style={marginTop} className={formClassName}>
       <FormLabel component="legend">{label}</FormLabel>
-      <RadioGroup 
+      <RadioGroup
         aria-label="gender"
         name="gender"
         style={{ display: "initial" }}
-        value={value}
+        value={value || ""}
         onChange={(e) => handleChange(e.target.value)}
       >
         {options.map((item, index) => (
           <FormControlLabel
-            value={item.value}
-            control={<Radio />} 
+            key={index}
+            className={labelClassName}
+
+            value={item.value || item}
+            control={<Radio />}
             label={item.label}
           />
         ))}
@@ -28,4 +32,4 @@ const NewRadioComponent = ({ handleChange, value, options, label }) => {
     </FormControl>
   );
 };
-export default NewRadioComponent;
+export default RadioComponent;

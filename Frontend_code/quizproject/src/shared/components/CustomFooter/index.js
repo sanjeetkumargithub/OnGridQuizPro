@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.css";
 import { Toolbar, Typography } from "@material-ui/core";
-const NewFooter = () => {
+const CustomFooter = () => {
   return (
     <div id="footer">
       {" "}
@@ -15,4 +15,4 @@ const NewFooter = () => {
     </div>
   );
 };
-export default NewFooter;
+export default CustomFooter;

@@ -1,7 +1,9 @@
 import React from "react";
 import Link from "@mui/material/Link";
 import "./style.css";
-const Newlink = ({ link, body }) => {
+
+const CustomLink = ({ link, body }) => {
+
   return (
     <Link href={link} variant="body2" id="links">
       {body}
@@ -9,4 +11,4 @@ const Newlink = ({ link, body }) => {
   );
 };
 
-export default Newlink;
+export default CustomLink;

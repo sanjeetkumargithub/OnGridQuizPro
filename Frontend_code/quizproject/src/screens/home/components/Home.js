@@ -1,37 +1,46 @@
 import * as React from "react";
-import Backdrop from "@mui/material/Backdrop";
-import CircularProgress from "@mui/material/CircularProgress";
 import { Grid } from "@mui/material";
-import { CustomCard } from "../../../shared";
-const HomeComponent = ({ data, handleClick }) => {
+import CustomCard from "./CustomCard";
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
+
+const HomeComponent = ({ quizs, handleClick,page ,pageanationQuiz,noOfPages}) => {
+
   return (
     <>
       <Grid
         container
+        justifyContent="center"
+        marginTop={4}
+        paddingTop={4}
+        fontSize={35}
+      >Quiz-Time</Grid>
+      <Grid
+        container
         item
         xs={12}
-        marginTop={5}
-        paddingTop={5}
+
         marginBottom={5}
         paddingBottom={5}
       >
-        {data.length > 0 ? (
-          data.map((item) => (
+
+        {quizs.length > 0 ? (
+          quizs.map((item) => (
             <CustomCard
               title={item.title}
-              handleClick={() => handleClick(item.id)}
+              handleClick={() => handleClick(item)}
             />
           ))
         ) : (
-          <Backdrop
-            sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
-            open
-          >
-            <CircularProgress color="inherit" />
-          </Backdrop>
+          <Grid container justifyContent="center" marginTop={5} paddingTop={5} fontSize={40}> No Quiz</Grid>
         )}
+        <Grid container justifyContent="center" marginTop={5} paddingTop={5}>
+          <Stack spacing={2}>
+            <Pagination page={page} onChange={pageanationQuiz}  count={noOfPages} variant="outlined" color="primary" />
+          </Stack></Grid>
       </Grid>
     </>
   );
 };
+
 export default HomeComponent;

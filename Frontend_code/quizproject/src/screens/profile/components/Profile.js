@@ -6,10 +6,13 @@ import {
   CustomButton,
   CustomRadioButton,
   CustomDate,
+  CustomErrorPopup
 } from "../../../shared";
 import { gender } from "../../../shared/constants";
 import { FormControl } from "@mui/material";
-const ProfileComponent = ({ data, handleChange, handleForm, value, error }) => {
+
+const ProfileComponent = ({ data, handleChange, handleForm, value, error,errorPopup,errorMessage,errorHandleChange  }) => {
+
   const paperStyle = {
     padding: "20px 60px",
     width: 400,
@@ -19,6 +22,7 @@ const ProfileComponent = ({ data, handleChange, handleForm, value, error }) => {
   };
   const headerStyle = { margin: 0 };
   const avatarStyle = { backgroundColor: "blue" };
+
   return (
     <Grid container>
       <Paper elevation={20} style={paperStyle}>
@@ -39,7 +43,7 @@ const ProfileComponent = ({ data, handleChange, handleForm, value, error }) => {
           <Grid className="profile">
             <CustomInput
               type="text"
-              placeholder="Please enter name"
+              placeholder="Enter name"
               label=""
               value={data.name}
               handleChange={(value) => handleChange(value, "name")}
@@ -50,7 +54,7 @@ const ProfileComponent = ({ data, handleChange, handleForm, value, error }) => {
           <Grid className="profile">
             <CustomInput
               type="number"
-              placeholder="Please enter mobile number"
+              placeholder="Enter mobile number"
               label=""
               value={data.mobile}
               handleChange={(value) => handleChange(value, "mobile")}
@@ -68,7 +72,7 @@ const ProfileComponent = ({ data, handleChange, handleForm, value, error }) => {
           </Grid>
           <Grid className="profile">
             <CustomDate
-              value={data.DateOfBirth}
+              value={data.dateOfBirth}
               handleChange={(value) => handleChange(value, "dateOfBirth")}
             />
           </Grid>
@@ -77,6 +81,7 @@ const ProfileComponent = ({ data, handleChange, handleForm, value, error }) => {
           </Grid>
         </FormControl>
       </Paper>
+      <CustomErrorPopup open={errorPopup} errorMessage={errorMessage} errorHandleChange={errorHandleChange} />
     </Grid>
   );
 };

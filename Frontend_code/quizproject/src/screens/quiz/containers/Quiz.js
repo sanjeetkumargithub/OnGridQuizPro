@@ -2,16 +2,22 @@ import React, { Component } from "react";
 import { QuizPageComponent } from "../components";
 import base_url from "../../../utils/api";
 import axios from "axios";
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
+
 const token = localStorage.getItem("SessionToken");
+
 class QuizContainer extends Component {
   state = {
-    list: [],
+    questions: [],
     answers: {},
-    res: {},
+    submitResponse: {},
     open: false,
+    pageLoading: false
+
   };
   componentDidMount = () => {
-    
+    this.setState({ pageLoading: true });
     const options = {
       headers: { Authorization: `${token}` },
     };
@@ -19,11 +25,13 @@ class QuizContainer extends Component {
     axios
       .get(`${base_url}/quiz/${id}/questions`, options)
       .then((response) => {
-        const list = response.data.data;
-        this.setState({ list: list });
+        const questions = response.data.data;
+        this.setState({ questions: questions });
+        this.setState({ pageLoading: false });
       })
       .catch((error) => {
         console.log(error);
+        this.setState({ pageLoading: false });
       });
   };
   onChangeValue = (id, value) => {
@@ -48,8 +56,8 @@ class QuizContainer extends Component {
     axios
       .post(`${base_url}/quiz/${quizId}/submit`, submitQuestions, options)
       .then((response) => {
-        let res = response.data.data;
-        this.setState({ res: res });
+        let responses = response.data.data;
+        this.setState({ submitResponse: responses });
       })
       .catch((error) => {
         console.log(error);
@@ -61,17 +69,35 @@ class QuizContainer extends Component {
   handleOpen = () => {
     this.setState({ open: true });
   };
-  
+
+  handleForm = () => {
+    localStorage.removeItem("quizTitle");
+    this.props.history.push("/");
+  };
+
   render() {
+    const { questions, answers, submitResponse, open } = this.state;
     return (
-      <QuizPageComponent
-        data={this.state.list}
-        onChangeValue={this.onChangeValue}
-        answers={this.state.answers}
-        submitQuiz={this.submitQuiz}
-        submitResponse={this.state.res}
-        handleOpen={this.state.open}
-      />
+      <>
+        {this.state.pageLoading ? <Backdrop
+          sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          open
+        >
+          <CircularProgress color="inherit" />
+        </Backdrop> :
+
+          <QuizPageComponent
+            data={questions}
+            onChangeValue={this.onChangeValue}
+            answers={answers}
+            submitQuiz={this.submitQuiz}
+            submitResponse={submitResponse}
+            handleOpen={open}
+            handleForm={this.handleForm}
+          />
+        }
+      </>
+
     );
   }
 }

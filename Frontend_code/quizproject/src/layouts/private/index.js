@@ -26,6 +26,10 @@ const PrivateLayout = () => {
       <div>
         {" "}
         <CustomFooter />
+
+
+
+    
       </div>
     </>
   );

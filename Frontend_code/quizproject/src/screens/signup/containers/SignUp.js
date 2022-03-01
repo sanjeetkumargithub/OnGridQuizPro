@@ -3,12 +3,16 @@ import { SignUpComponent } from "../components";
 import axios from "axios";
 import base_url from "../../../utils/api";
 import { isEmpty } from "loadsh";
+import { emailRegex, passwordRegex, mobileRegex } from "../../../utils/helper";
+
 class SignUpContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
       data: {},
       error: {},
+      errorPopup: false,
+      errorMessage:""
     };
   }
   handleChange = (value, key) => {
@@ -26,19 +30,20 @@ class SignUpContainer extends Component {
         .then((response) => {
           console.log(response);
           localStorage.setItem("SessionToken", response.data.data.token);
-          window.location.href = "/";
+          window.location.href="/";
         })
         .catch((error) => {
-          alert(error.response.data.message);
+          this.setState({ errorPopup: true });
+          this.setState({ errorMessage: error.response.data.message });
         });
     }
   };
+  errorHandleChange=()=>{
+    this.setState({ errorPopup: false });
+  }
 
   validation = () => {
-    let emailRegex = /^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$/;
-    let passwordRegex =
-      /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\S+$).{8,}$/;
-    let mobileRegex = /\d{10}/;
+
     let error = {};
 
     if (!this.state.data.name) {
@@ -77,19 +82,25 @@ class SignUpContainer extends Component {
       this.state.data.confirmpassword &&
       this.state.data.password !== this.state.data.confirmpassword
     ) {
-      error.confirmpassword = "Confirm password not match.";
+      error.confirmpassword = "Confirm password should contain at least one digit, at least one lower case, at least one upper case, at least one special characterat and at least 8 from the mentioned characters.";
     }
+
 
     this.setState({ error: error });
     return error;
   };
+
   render() {
+    const { data, error ,errorMessage,errorPopup,errorHandleChange} = this.state;
     return (
       <SignUpComponent
-        data={this.state.data}
+        data={data}
         handleChange={this.handleChange}
         handleForm={this.handleForm}
-        error={this.state.error}
+        error={error}
+        errorPopup={errorPopup}
+        errorMessage={errorMessage}
+        errorHandleChange={this.errorHandleChange}
       />
     );
   }
